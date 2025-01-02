@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Head, router } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputField from '@/Components/Form/InputField';
+import InputLabel from '@/Components/Form/InputLabel';
+import InputError from '@/Components/Form/InputError';
 
 export default function Create({ auth }) {
     const [values, setValues] = useState({
@@ -9,6 +11,7 @@ export default function Create({ auth }) {
         email: '',
         password: '',
         password_confirmation: '',
+        professor_type: '',
     });
 
     const [errors, setErrors] = useState({});
@@ -84,6 +87,22 @@ export default function Create({ auth }) {
                                     error={errors.password_confirmation}
                                     required
                                 />
+
+                                <div>
+                                    <InputLabel htmlFor="professor_type" value="Professor Type" />
+                                    <select
+                                        id="professor_type"
+                                        name="professor_type"
+                                        value={values.professor_type}
+                                        onChange={handleChange}
+                                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                    >
+                                        <option value="">Select a type</option>
+                                        <option value="permanent">Permanent</option>
+                                        <option value="vacataire">Vacataire</option>
+                                    </select>
+                                    <InputError message={errors.professor_type} className="mt-2" />
+                                </div>
 
                                 <div className="flex items-center justify-end mt-4">
                                     <button

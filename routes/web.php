@@ -53,7 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/professor/modules', [ModuleController::class, 'professorModules'])->name('professor.modules');
     Route::resource('diary-entries', DiaryEntryController::class);
 
-    // Admin routes are protected by middleware in their respective controllers
+    // Admin routes are protected by middleware in  controllers
     Route::resource('professors', ProfessorController::class);
     Route::resource('modules', ModuleController::class);
     Route::resource('fields', FieldController::class);

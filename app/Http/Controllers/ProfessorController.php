@@ -42,6 +42,7 @@ class ProfessorController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'professor_type' => 'required|string|in:permanent,vacataire',
         ]);
 
         $professor = User::create([
@@ -49,6 +50,7 @@ class ProfessorController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => 'professor',
+            'professor_type' => $validated['professor_type'],
         ]);
 
         return redirect()->route('professors.index')
@@ -77,10 +79,12 @@ class ProfessorController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $professor->id,
             'password' => 'nullable|string|min:8|confirmed',
+            'professor_type' => 'required|string|in:permanent,vacataire',
         ]);
 
         $professor->name = $validated['name'];
         $professor->email = $validated['email'];
+        $professor->professor_type = $validated['professor_type'];
         
         if (!empty($validated['password'])) {
             $professor->password = Hash::make($validated['password']);
