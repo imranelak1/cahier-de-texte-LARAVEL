@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Head, router } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputField from '@/Components/Form/InputField';
-import InputLabel from '@/Components/Form/InputLabel';
-import InputError from '@/Components/Form/InputError';
+import InputLabel from '@/Components/InputLabel';
+import InputError from '@/Components/InputError';
 
 export default function Edit({ auth, professor }) {
     const [values, setValues] = useState({
